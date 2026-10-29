@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --color-paper: var(--sisi-page);
+  --color-ink: var(--sisi-ink);
+  --color-muted: var(--sisi-muted);
+  --color-line: var(--sisi-line);
+  --color-surface: var(--sisi-surface);
+  --color-surface-raised: var(--sisi-raised);
+  --color-royal: #1d4ed8;
+  --color-royal-dark: #1e40af;
+  --color-royal-light: #dbeafe;
+  --color-teal: #0f766e;
+  --color-teal-light: #ccfbf1;
+  --color-tea: #1f5c3a;
+  --color-tea-dark: #143d26;
+  --color-tea-light: #e3efe6;
+  --color-murram: #b0502a;
+  --color-maize: #d99a1b;
+  --color-maize-dark: #7a5208;
+  --color-lake: #2d6797;
+}
+:root {
+  color-scheme: light;
+  --sisi-page: #f5f7fc;
+  --sisi-surface: #fff;
+  --sisi-raised: #eef3fa;
+  --sisi-ink: #172033;
+  --sisi-muted: #5b667a;
+  --sisi-line: #e1e7f0;
+  --sisi-header: rgb(255 255 255 / 92%);
+  --sisi-focus: #2563eb;
+}
+:root.dark {
+  color-scheme: dark;
+  --sisi-page: #0b1220;
+  --sisi-surface: #121d30;
+  --sisi-raised: #1b2940;
+  --sisi-ink: #f1f5f9;
+  --sisi-muted: #aab7ca;
+  --sisi-line: #2a3850;
+  --sisi-header: rgb(11 18 32 / 92%);
+  --sisi-focus: #93b4ff;
+}
+@utility type-display {
+  font-stretch: 125%;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+@utility sisi-card {
+  background: var(--sisi-surface);
+  border: 1px solid var(--sisi-line);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 30px rgb(15 23 42 / 4%);
+}
+@layer base {
+  html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    min-height: 100vh;
+    @apply bg-paper text-ink antialiased;
+    font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  }
+  * {
+    border-color: var(--sisi-line);
+  }
+  *:focus-visible {
+    outline: 2px solid var(--sisi-focus);
+    outline-offset: 3px;
+  }
+  a {
+    text-underline-offset: 4px;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  ::selection {
+    color: white;
+    background: #1d4ed8;
+  }
+}
+@keyframes fill-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@utility animate-fill-in {
+  animation: fill-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
